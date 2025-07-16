@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: umershamshad/mysql-argocd:1
+          image: umershamshad/mysql-argocd:2
           ports:
             - containerPort: 3306
               name: mysql
