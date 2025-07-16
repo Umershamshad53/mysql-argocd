@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql-argocd                 # 👈 Name shown in Argo CD UI
+  namespace: argocd                # 👈 Must match Argo CD's install namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Umershamshad53/mysql-argocd.git # 👈 Your repo URL
+    targetRevision: HEAD
+    path: .                          # 👈 Use "." ONLY if YAML files are in root
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default              # 👈 Namespace to deploy to
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
