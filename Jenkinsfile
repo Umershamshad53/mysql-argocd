@@ -22,7 +22,7 @@ pipeline {
             echo ${DOCKER_CREDENTIALS_PSW} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin
             docker push umershamshad/mysql-argocd:${tag}latest
             docker push umershamshad/mysql-argocd:${tag}${BUILD_NUMBER}
-            sed -i 's|umershamshad/mysql-argocd:.*|umershamshad/mysql-argocd:${tag}${BUILD_NUMBER}|' deployment.yaml
+            sed -i 's|umershamshad/mysql-argocd:.*|umershamshad/mysql-argocd:${tag}${BUILD_NUMBER}|' stateful.yaml
             git add stateful.yaml
             git commit -m "Update image tag to ${tag}${BUILD_NUMBER}"
             git push origin HEAD:${BRANCH_NAME}
